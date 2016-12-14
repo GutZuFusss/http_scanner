@@ -2,9 +2,14 @@ from urllib2 import *
 
 print "# Enter the range to scan"
 print "# i.E.: 111.111"
-iprange = raw_input("> ")
+ip_range = raw_input("> ")
+print "# Range set to " + ip_range
+print "#"
+print "# File for IPs with HTTP server"
+print "# i.E.: http_servers.txt"
+out_file = raw_input("> ")
 
-url_prefix = "http://" + iprange +"."
+url_prefix = "http://" + ip_range +"."
 
 for x1 in range(0, 255):
 	for x2 in range(0, 255):
@@ -18,14 +23,14 @@ for x1 in range(0, 255):
 			reponse = urlopen(req, timeout=1)
 		except HTTPError, e:
 			url = None
-			print "[caugh HTTPError] (hier keine, bruder)"
+			print "[caugh HTTPError] Couldn't find a HTTP server."
 			continue
 		except URLError, e:
 			url = None
-			print "[caugh  URLError] (hier keine, bruder)"
+			print "[caugh  URLError] Couldn't find a HTTP server."
 			continue
 
-		print "HARRRR!!!! URL: " + url
-		text_file = open("twf_possibru_ips.txt", "a")
-		text_file.write(ip + "\n")
+		print "[HIT] Found HTTP server: " + url
+		text_file = open(out_file, "a")
+		text_file.write(url + "\n")
 		text_file.close()
