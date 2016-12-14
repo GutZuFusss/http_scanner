@@ -1,6 +1,10 @@
 from urllib2 import *
 
-url_prefix = "http://212.224." # "http://172.217."
+print "# Enter the range to scan"
+print "# i.E.: 111.111"
+iprange = raw_input("> ")
+
+url_prefix = "http://" + iprange +"."
 
 for x1 in range(0, 255):
 	for x2 in range(0, 255):
